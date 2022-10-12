@@ -1,0 +1,27 @@
+setwd('C:/DD/project/R/coursera')
+
+make1 <- function(x = matrix(sample(1:10,1),2,2)) {
+  a <- NULL
+  set <- function(y) {
+    x <<- y
+    a <<- NULL
+  }
+  get <- function() x
+  sets <- function(solve) a <<- solve
+  gets <- function() a
+  list(set = set, get = get,
+       sets = sets,
+       gets = gets)
+}
+
+cash1 <- function(x, ...) {
+  a <- x$gets()
+  if(!is.null(a)) {
+    message("matrix")
+    return(a)
+  }
+  data <- x$get()
+  a <- solve(data, ...)
+  x$sets(a)
+  a
+}
